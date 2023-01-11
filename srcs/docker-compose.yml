@@ -61,55 +61,6 @@ services:
     ports:
       - "443:443"
 
-  redis:
-    container_name: redis
-    build: ./requirements/bonus/redis/
-    restart: always
-    env_file: .env
-    networks:
-      - stissera
-    depends_on:
-      - nginx
-    ports:
-      - "6379:6379"
-
-  ftp-server:
-    container_name: ftp-server
-    build: ./requirements/bonus/ftp-server/
-    restart: always
-    env_file: .env
-    volumes:
-      - wordpress:/home/bca
-    networks:
-      - stissera
-    depends_on:
-      - nginx
-    ports:
-      - "21:21"
-      - "21000-21010:21000-21010"
-
-  site:
-    container_name: site
-    build: requirements/bonus/site/
-    restart: always
-    networks:
-      - stissera
-    depends_on:
-      - nginx
-    ports:
-      - "8081:8081"
-
-  adminer:
-    container_name: adminer
-    build: ./requirements/bonus/adminer/
-    restart: always
-    depends_on:
-      - mariadb
-    networks:
-      - stissera
-    ports:
-      - "8080:8080"
-
 networks:
   stissera:
     name: stissera
