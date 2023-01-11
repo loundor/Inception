@@ -43,7 +43,7 @@ services:
     build: ./requirements/wordpress/
     env_file: .env
     volumes:
-      - wp:/var/www/wordpress
+      - wordpress:/var/www/wordpress
     networks:
       - stissera
     depends_on:
@@ -53,7 +53,7 @@ services:
     container_name: nginx
     build: ./requirements/nginx/
     volumes:
-      - wp:/var/www/wordpress
+      - wordpress:/var/www/wordpress
     networks:
       - stissera
     depends_on:
@@ -79,7 +79,7 @@ services:
     restart: always
     env_file: .env
     volumes:
-      - wp:/home/bca
+      - wordpress:/home/bca
     networks:
       - stissera
     depends_on:
