@@ -7,10 +7,10 @@
 define('DB_NAME', 'Base');
 
 /** MySQL database username */
-define('DB_USER', 'bca');
+define('DB_USER', 'stissera');
 
 /** MySQL database password */
-define('DB_PASSWORD', '1qaz');
+define('DB_PASSWORD', 'qwerty');
 
 /** MySQL hostname */
 define('DB_HOST', 'mariadb');
