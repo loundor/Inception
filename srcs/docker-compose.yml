@@ -1,0 +1,55 @@
+version: "3.5"
+
+networks:
+  docker:
+    name: docker
+
+volumes:
+  wordpress:
+    name: wordpress
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/stissera/data/wp
+
+  db:
+    name: db
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/stissera/data/db
+
+services:
+  mariadb:
+    container_name: mariadb
+    build: ./requirements/mariadb/
+    restart: always
+    env_file: .env
+    volumes:
+      - db:/var/lib/mysql
+    networks:
+      - docker
+
+  wordpress:
+    container_name: wordpress
+    build: ./requirements/wordpress/
+    env_file: .env
+    volumes:
+      - wordpress:/var/www/wordpress
+    networks:
+      - docker
+    depends_on:
+      - mariadb
+  nginx:
+    container_name: nginx
+    build: ./requirements/nginx/
+    volumes:
+      - wordpress:/var/www/wordpress
+    networks:
+      - docker
+    depends_on:
+      - wordpress
+    ports:
+      - "443:443"
