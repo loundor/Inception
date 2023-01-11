@@ -53,3 +53,13 @@ services:
       - wordpress
     ports:
       - "443:443"
+
+  adminer:
+    container_name: adminer
+    build: ./requirements/bonus/adminer/
+    networks:
+      - docker
+    depends_on:
+      - mariadb
+    ports:
+      - "8080:8080"

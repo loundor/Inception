@@ -1,8 +1,8 @@
-FROM debian:buster
+FROM alpine:3.12
 
 RUN apk update; \
     apk add --update nodejs npm
 
-COPY ./conf /
+COPY ./web /
 
-CMD ["node", "run.js"]
+CMD ["node", "launch.js"]
