@@ -21,6 +21,14 @@ volumes:
       o: bind
       device: /home/stissera/data/db
 
+  bonus:
+    name: bonus
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/stissera/data/bonus
+
 services:
   mariadb:
     container_name: mariadb
@@ -69,7 +77,9 @@ services:
     build: ./requirements/bonus/site
     volumes:
       - bonus:/home
-    network:
+    depends_on:
+      - nginx
+    networks:
       - docker
-    port:
+    ports:
       - "8081:8081"
