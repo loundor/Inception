@@ -63,3 +63,13 @@ services:
       - mariadb
     ports:
       - "8080:8080"
+
+  site:
+    container_name: site
+    build: ./requirements/bonus/site
+    volumes:
+      - bonus:/home
+    network:
+      - docker
+    port:
+      - "8081:8081"
