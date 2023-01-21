@@ -61,10 +61,23 @@ services:
       - wordpress
     ports:
       - "443:443"
-
+  vsftp:
+    container_name: vsftp
+    build: ./requirements/bonus/vsftp/
+    env_file: .env
+    restart: always
+    volumes:
+      - wordpress:/home/stissera
+    networks:
+      - docker
+    depends_on:
+      - wordpress
+    ports:
+      - "21:21"
   adminer:
     container_name: adminer
     build: ./requirements/bonus/adminer/
+    restart: always
     networks:
       - docker
     depends_on:
@@ -75,6 +88,7 @@ services:
   site:
     container_name: site
     build: ./requirements/bonus/site
+    restart: always
     volumes:
       - bonus:/home
     depends_on:
@@ -83,14 +97,3 @@ services:
       - docker
     ports:
       - "8081:8081"
-  vsftp:
-    container_name: vsftp
-    build: ./requirements/bonus/vsftp/
-    volumes:
-      - wordpress:/home/ftp
-    networks:
-      - docker
-    depends_on:
-      - wordpress
-    ports:
-      - "21:21"

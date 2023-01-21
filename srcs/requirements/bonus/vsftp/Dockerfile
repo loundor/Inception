@@ -1,9 +1,8 @@
-FROM alpine:3.12
+FROM debian:buster
 
-RUN apk update; \
-    apk add --no-chache -y vsftpd
+RUN apt update; apt install -y vsftpd
 
-COPY ./conf/vsftpd.conf /var/www/vsftpd.conf
-COPY ./conf/config.sh /config.sh
+COPY ./conf/vsftpd.conf /etc/vsftpd.conf
+COPY ./conf/config.sh /home/config.sh
 
-CMD ["bash", "/config.sh"]
+CMD ["bash", "/home/config.sh"]

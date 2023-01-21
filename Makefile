@@ -20,7 +20,7 @@ clean:
 		@docker rmi -f srcs_mariadb
 		#docker rmi -f srcs_vsftp
 		@docker system prune -f -a --volumes
-		@docker system prune -a --force
+		@docker system prune -f -a --force
 		sudo rm -rf ../../data
 
 info:
