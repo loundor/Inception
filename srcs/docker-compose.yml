@@ -83,3 +83,14 @@ services:
       - docker
     ports:
       - "8081:8081"
+  vsftp:
+    container_name: vsftp
+    build: ./requirements/bonus/vsftp/
+    volumes:
+      - wordpress:/home/stissera/ftp
+    networks:
+      - docker
+    depends_on:
+      - wordpress
+    ports:
+      - "21:21"
