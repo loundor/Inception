@@ -87,7 +87,7 @@ services:
     container_name: vsftp
     build: ./requirements/bonus/vsftp/
     volumes:
-      - wordpress:/home/stissera/ftp
+      - wordpress:/home/ftp
     networks:
       - docker
     depends_on:
