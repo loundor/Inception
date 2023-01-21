@@ -18,6 +18,7 @@ clean:
 		@docker rmi -f srcs_nginx
 		@docker rmi -f srcs_wordpress
 		@docker rmi -f srcs_mariadb
+		#docker rmi -f srcs_vsftp
 		@docker system prune -f -a --volumes
 		@docker system prune -a --force
 		sudo rm -rf ../../data
