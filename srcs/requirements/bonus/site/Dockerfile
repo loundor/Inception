@@ -1,6 +1,6 @@
-FROM alpine:3.12
+FROM debian:buster
 
-RUN apk update; apk add --update nodejs npm
+RUN apt update; apt install -y nodejs npm
 
 COPY ./web /home
 
